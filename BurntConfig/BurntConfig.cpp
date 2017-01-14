@@ -1,7 +1,5 @@
 #include "BurntConfig.h"
 
-#include <iostream>
-
 BurntConfig::BurntConfig(const gchar *config_file_str)
 {
     // 1. Check to see if exists, open file
@@ -50,8 +48,8 @@ void BurntConfig::init_class_tree()
 
 void BurntConfig::init_buffer_sizes()
 {
-    this->BuffSizes->Min = g_key_file_get_integer(gkf, "BufferSizes", "Min", NULL);
-    this->BuffSizes->Max = g_key_file_get_integer(gkf, "BufferSizes", "Max", NULL);
+    this->BuffSizes->Min = g_key_file_get_integer(gkf, "BuffSizes", "Min", NULL);
+    this->BuffSizes->Max = g_key_file_get_integer(gkf, "BuffSizes", "Max", NULL);
 }
 
 void BurntConfig::init_debug_messages()

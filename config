@@ -2,15 +2,15 @@
 DecTypes=BF;F;R
 DecValues=0.0023;0.9603;0.0009
 
-[BufferSizes]
+[BuffSizes]
 Min=4096
 Max=4096
 
 [DebugMessages]
-PrintFilename=True
-PrintDebug=True
-PrintBuffer=False
+PrintFilename=true
+PrintDebug=true
+PrintBuffer=false
 
 [Snapshot]
-Enable=True
-Sync=True
+Enable=true
+Sync=true
