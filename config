@@ -1,0 +1,16 @@
+[ClassTree]
+DecTypes=BF;F;R
+DecValues=0.0023;0.9603;0.0009
+
+[BufferSizes]
+Min=4096
+Max=4096
+
+[DebugMessages]
+PrintFilename=True
+PrintDebug=True
+PrintBuffer=False
+
+[Snapshot]
+Enable=True
+Sync=True
