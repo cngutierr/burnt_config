@@ -25,6 +25,7 @@ BurntConfig::BurntConfig(const gchar *config_file_str)
     this->config_file_str = config_file_str;
 
     init_all();
+    print_config();
 }
 
 
@@ -80,4 +81,49 @@ BurntConfig::~BurntConfig()
     g_slice_free(Snapshot_s, this->Snapshot);
 
     g_key_file_free (gkf);
+}
+
+
+void BurntConfig::print_config()
+{
+    cout << "--==BuRnT Configuration File==--" << endl;
+    cout << "Classification Tree" << endl;
+    print_class_tree();
+    cout << "Buffer Sizes" << endl;
+    print_buff_sizes();
+    cout << "Debug Messages" << endl;
+    print_debug_messages();
+    cout << "Snapshot Settings" << endl;
+    print_snapshot();
+    cout << "\n\n";
+
+
+}
+
+void BurntConfig::print_class_tree()
+{
+    for(int i = 0; i < ClassTree->Size; i++)
+    {
+        cout << "\t<" << ClassTree->DecTypes[i] << ", "
+             << ClassTree->DecValues[i] << ">" << endl;
+    }
+}
+
+void BurntConfig::print_buff_sizes()
+{
+    cout << "\tMin Size: " << BuffSizes->Min << endl;
+    cout << "\tMax Size: " << BuffSizes->Max << endl;
+}
+
+void BurntConfig::print_debug_messages()
+{
+    cout << "\tPrint Filename: " << DebugMessages->PrintFilename << endl;
+    cout << "\tPrint Debug: " << DebugMessages->PrintDebug << endl;
+    cout << "\tPrint Buffer: " << DebugMessages->PrintBuffer << endl;
+}
+
+void BurntConfig::print_snapshot()
+{
+    cout << "\tEnable: " << Snapshot->Enable << endl;
+    cout << "\tSync: " << Snapshot->Sync << endl;
 }

@@ -1,8 +1,8 @@
-#ifndef CONFIG_FILES_LIBRARY_H
-#define CONFIG_FILES_LIBRARY_H
+#ifndef BURNT_CONFIG_H
+#define BURNT_CONFIG_H
 #include <string>
 #include <glib.h>
-
+#include <iostream>
 using namespace std;
 
 typedef struct
@@ -40,6 +40,11 @@ class BurntConfig
         BuffSizes_s *BuffSizes;
         DebugMessages_s *DebugMessages;
         Snapshot_s *Snapshot;
+        void print_config();
+        void print_class_tree();
+        void print_buff_sizes();
+        void print_debug_messages();
+        void print_snapshot();
     private:
         void init_class_tree();
         void init_buffer_sizes();
