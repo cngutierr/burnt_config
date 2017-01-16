@@ -1,7 +1,9 @@
 [ClassTree]
 RandTest=true
-DecTypes=BF;F;R
-DecValues=0.0023;0.9603;0.0009
+# M = Monobit, B = Freq block, runs = R, L = longest one runs
+# Class lable: 0 = benign, 1 = random
+DecTypes=M;B;R;0;1;0;1
+DecValues=0.0023;0.9603;0.0009;-1.0;-1.0;-1.0;-1.0
 
 [BuffSizes]
 Min=4096
@@ -16,5 +18,14 @@ PrintBuffer=false
 Enable=true
 Sync=true
 
-[UsernameFileFilter]
+[UserFileFilter]
 Enable=false
+
+[FuzzyTimer]
+Enable=true
+Distribution=Uniform
+MinCoeff=0.75
+MaxCoeff=1.25
+SecondsPerByte=0.00000001
+
+

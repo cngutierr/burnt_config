@@ -21,8 +21,8 @@ public:
 
 TEST_F(BurntCheckTest, check_ClassTree)
 {
-    EXPECT_STREQ(config->ClassTree->DecTypes[0], "BF");
-    EXPECT_STREQ(config->ClassTree->DecTypes[1], "F");
+    EXPECT_STREQ(config->ClassTree->DecTypes[0], "M");
+    EXPECT_STREQ(config->ClassTree->DecTypes[1], "B");
     EXPECT_STREQ(config->ClassTree->DecTypes[2], "R");
     EXPECT_EQ(config->ClassTree->DecValues[0], 0.0023);
     EXPECT_EQ(config->ClassTree->DecValues[1], 0.9603);
@@ -47,4 +47,18 @@ TEST_F(BurntCheckTest, check_Snapshot)
 {
     EXPECT_EQ(config->Snapshot->Enable, true);
     EXPECT_EQ(config->Snapshot->Sync, true);
+}
+
+TEST_F(BurntCheckTest, check_UserFileFilter)
+{
+    EXPECT_EQ(config->UserFileFilter->Enable, false);
+}
+
+TEST_F(BurntCheckTest, check_FuzzyTimer)
+{
+    EXPECT_EQ(config->FuzzyTimer->Enable, true);
+    EXPECT_STREQ(config->FuzzyTimer->Distribution, "Uniform");
+    EXPECT_DOUBLE_EQ(config->FuzzyTimer->MinCoeff, 0.75);
+    EXPECT_DOUBLE_EQ(config->FuzzyTimer->MaxCoeff, 1.25);
+    EXPECT_DOUBLE_EQ(config->FuzzyTimer->SecondsPerByte, 0.00000001);
 }

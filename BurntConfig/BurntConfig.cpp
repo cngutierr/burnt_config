@@ -22,13 +22,13 @@ BurntConfig::BurntConfig(const gchar *config_file_str)
     this->BuffSizes = g_slice_new(BuffSizes_s);
     this->DebugMessages = g_slice_new(DebugMessages_s);
     this->Snapshot = g_slice_new(Snapshot_s);
+    this->UserFileFilter = g_slice_new(UserFileFilter_s);
+    this->FuzzyTimer = g_slice_new(FuzzyTimer_s);
     this->config_file_str = config_file_str;
 
     init_all();
     print_config();
 }
-
-
 
 void BurntConfig::init_class_tree()
 {
@@ -67,11 +67,29 @@ void BurntConfig::init_snapshot()
     this->Snapshot->Sync = g_key_file_get_boolean(gkf, "Snapshot", "Sync", NULL);
 }
 
+void BurntConfig::init_user_file_filter()
+{
+    this->UserFileFilter->Enable = g_key_file_get_boolean(gkf, "UserFileFilter", "Enable", NULL);
+}
+
+void BurntConfig::init_fuzzy_timer()
+{
+    this->FuzzyTimer->Enable = g_key_file_get_boolean(gkf, "FuzzyTimer", "Enable", NULL);
+    this->FuzzyTimer->Distribution = g_key_file_get_string(gkf, "FuzzyTimer", "Distribution", NULL);
+    if(g_str_equal(this->FuzzyTimer->Distribution, "Uniform"))
+    {
+        this->FuzzyTimer->MaxCoeff = g_key_file_get_double(gkf, "FuzzyTimer", "MaxCoeff", NULL);
+        this->FuzzyTimer->MinCoeff = g_key_file_get_double(gkf, "FuzzyTimer", "MinCoeff", NULL);
+        this->FuzzyTimer->SecondsPerByte = g_key_file_get_double(gkf, "FuzzyTimer", "SecondsPerByte", NULL);
+    }
+}
 void BurntConfig::init_all()
 {
     init_class_tree();
     init_buffer_sizes();
     init_debug_messages();
+    init_user_file_filter();
+    init_fuzzy_timer();
     init_snapshot();
 }
 BurntConfig::~BurntConfig()
@@ -80,14 +98,15 @@ BurntConfig::~BurntConfig()
     g_slice_free(BuffSizes_s, this->BuffSizes);
     g_slice_free(DebugMessages_s, this->DebugMessages);
     g_slice_free(Snapshot_s, this->Snapshot);
-
+    g_slice_free(UserFileFilter_s, this->UserFileFilter);
+    g_slice_free(FuzzyTimer_s, this->FuzzyTimer);
     g_key_file_free (gkf);
 }
 
 
 void BurntConfig::print_config()
 {
-    cout << "--==BuRnT Configuration File==--" << endl;
+    cout << "\n--==BuRnT Configuration File==--" << endl;
     cout << "Configuration Filename: " << config_file_str << endl;
     cout << "Classification Tree" << endl;
     print_class_tree();
@@ -97,6 +116,10 @@ void BurntConfig::print_config()
     print_debug_messages();
     cout << "Snapshot Settings" << endl;
     print_snapshot();
+    cout << "User File Filter Settings" << endl;
+    print_user_file_filter();
+    cout << "Fuzzy Timer Settings" << endl;
+    print_fuzzy_timer();
     cout << "\n\n";
 }
 
@@ -127,4 +150,24 @@ void BurntConfig::print_snapshot()
 {
     cout << "\tEnable: " << Snapshot->Enable << endl;
     cout << "\tSync: " << Snapshot->Sync << endl;
+}
+
+void BurntConfig::print_user_file_filter()
+{
+    cout << "\tEnable: " << UserFileFilter->Enable << endl;
+}
+
+void BurntConfig::print_fuzzy_timer()
+{
+    cout << "\tEnable: " << FuzzyTimer->Enable << endl;
+    if(FuzzyTimer->Enable)
+    {
+        cout << "\tDistribution: " << FuzzyTimer->Distribution << endl;
+    }
+    if(FuzzyTimer->Enable && g_str_equal(FuzzyTimer->Distribution, "Uniform"))
+    {
+        cout << "\tMinCoeff: " << FuzzyTimer->MinCoeff << endl;
+        cout << "\tMaxCoeff: " << FuzzyTimer->MaxCoeff << endl;
+        cout << "\tSecondsPerByte: " << FuzzyTimer->SecondsPerByte << endl;
+    }
 }
