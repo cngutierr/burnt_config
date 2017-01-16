@@ -8,6 +8,7 @@ using namespace std;
 typedef struct
 {
     gsize Size;
+    gboolean RandTest;
     gchar **DecTypes;
     gdouble *DecValues;
 }ClassTree_s;
@@ -45,6 +46,7 @@ class BurntConfig
         void print_buff_sizes();
         void print_debug_messages();
         void print_snapshot();
+
     private:
         void init_class_tree();
         void init_buffer_sizes();
@@ -53,7 +55,6 @@ class BurntConfig
         void init_all();
         string config_file_str;
         GKeyFile* gkf;
-
 };
 
 

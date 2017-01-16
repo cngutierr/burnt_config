@@ -36,6 +36,7 @@ void BurntConfig::init_class_tree()
     gsize len_value;
     this->ClassTree->DecTypes = g_key_file_get_string_list(gkf, "ClassTree", "DecTypes", &len_type, NULL);
     this->ClassTree->DecValues = g_key_file_get_double_list (gkf, "ClassTree", "DecValues", &len_value, NULL);
+    this->ClassTree->RandTest = g_key_file_get_boolean(gkf, "ClassTree", "RandTest", NULL);
     if(len_type != len_value)
     {
         perror("Classification tree definition error. DecTypes and DecValues length do not match.");
@@ -87,6 +88,7 @@ BurntConfig::~BurntConfig()
 void BurntConfig::print_config()
 {
     cout << "--==BuRnT Configuration File==--" << endl;
+    cout << "Configuration Filename: " << config_file_str << endl;
     cout << "Classification Tree" << endl;
     print_class_tree();
     cout << "Buffer Sizes" << endl;
@@ -96,12 +98,11 @@ void BurntConfig::print_config()
     cout << "Snapshot Settings" << endl;
     print_snapshot();
     cout << "\n\n";
-
-
 }
 
 void BurntConfig::print_class_tree()
 {
+    cout << "\tRandTest: " << ClassTree->RandTest << endl;
     for(int i = 0; i < ClassTree->Size; i++)
     {
         cout << "\t<" << ClassTree->DecTypes[i] << ", "

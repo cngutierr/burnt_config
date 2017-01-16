@@ -27,6 +27,7 @@ TEST_F(BurntCheckTest, check_ClassTree)
     EXPECT_EQ(config->ClassTree->DecValues[0], 0.0023);
     EXPECT_EQ(config->ClassTree->DecValues[1], 0.9603);
     EXPECT_EQ(config->ClassTree->DecValues[2], 0.0009);
+    EXPECT_EQ(config->ClassTree->RandTest, true);
 }
 
 TEST_F(BurntCheckTest, check_BuffSizes)
