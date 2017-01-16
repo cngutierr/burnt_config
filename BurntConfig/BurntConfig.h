@@ -43,7 +43,7 @@ typedef struct
     gchar* Distribution;
     double MinCoeff;
     double MaxCoeff;
-    double SecondsPerByte;
+    int NSecPerByte;
 }FuzzyTimer_s;
 
 class BurntConfig

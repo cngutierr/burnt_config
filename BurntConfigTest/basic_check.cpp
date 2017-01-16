@@ -60,5 +60,5 @@ TEST_F(BurntCheckTest, check_FuzzyTimer)
     EXPECT_STREQ(config->FuzzyTimer->Distribution, "Uniform");
     EXPECT_DOUBLE_EQ(config->FuzzyTimer->MinCoeff, 0.75);
     EXPECT_DOUBLE_EQ(config->FuzzyTimer->MaxCoeff, 1.25);
-    EXPECT_DOUBLE_EQ(config->FuzzyTimer->SecondsPerByte, 0.00000001);
+    EXPECT_DOUBLE_EQ(config->FuzzyTimer->NSecPerByte, 10);
 }

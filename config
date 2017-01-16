@@ -26,6 +26,6 @@ Enable=true
 Distribution=Uniform
 MinCoeff=0.75
 MaxCoeff=1.25
-SecondsPerByte=0.00000001
+NSecPerByte=10
 
 

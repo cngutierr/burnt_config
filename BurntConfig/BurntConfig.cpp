@@ -80,7 +80,7 @@ void BurntConfig::init_fuzzy_timer()
     {
         this->FuzzyTimer->MaxCoeff = g_key_file_get_double(gkf, "FuzzyTimer", "MaxCoeff", NULL);
         this->FuzzyTimer->MinCoeff = g_key_file_get_double(gkf, "FuzzyTimer", "MinCoeff", NULL);
-        this->FuzzyTimer->SecondsPerByte = g_key_file_get_double(gkf, "FuzzyTimer", "SecondsPerByte", NULL);
+        this->FuzzyTimer->NSecPerByte = g_key_file_get_integer(gkf, "FuzzyTimer", "NSecPerByte", NULL);
     }
 }
 void BurntConfig::init_all()
@@ -168,6 +168,6 @@ void BurntConfig::print_fuzzy_timer()
     {
         cout << "\tMinCoeff: " << FuzzyTimer->MinCoeff << endl;
         cout << "\tMaxCoeff: " << FuzzyTimer->MaxCoeff << endl;
-        cout << "\tSecondsPerByte: " << FuzzyTimer->SecondsPerByte << endl;
+        cout << "\tNSecPerByte: " << FuzzyTimer->NSecPerByte << endl;
     }
 }
